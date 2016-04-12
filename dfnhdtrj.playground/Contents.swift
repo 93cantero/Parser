@@ -13,31 +13,22 @@ enum JSONType {
 }
 
 protocol StructDecoder {
-    init()
-    //Returns a NSManagedObject with the properties properly set
-    
-    /* Parse a dictionary to a Media struct
-     * - param The parameters are in a dictionary. This dictionary takes the parameters not common with the struct properties. If all parameters are the same, you can omit this value
-     *
-     */
-    //    static func parseWithDictionary(notCommonKeys: [String:String]?, json: [String: AnyObject]) -> Self
 }
 
 
 struct Media : StructDecoder {
     var name : String = ""
     var desc : String?
-    //    var createdAt : NSDate = NSDate()
-    var category : Int = 0//MAKE IT AN ENUM
+    var category : Int = 0
     var width : Int = 0
     var height : Int = 0
     var imageUrl : String = ""
     
 }
 
-extension Media : JSONDecodable{
-
-}
+//extension Media : JSONDecodable{
+//
+//}
 
 /** Allows to extend functionality to several APIs that ends on the same resulting object.
  *
@@ -90,12 +81,12 @@ extension JSONDecodable {
         return Mirror(reflecting: some)
     }
     
-    static func decode(json: [String:AnyObject], Par) throws -> [Self]  {
-        return []
-    }
+//    static func decode(json: [String:AnyObject], Par) throws -> [Self]  {
+//        return []
+//    }
 }
 
 let a : [String:AnyObject] = ["name": "Orange or lemon", "description": "",  "category": (0 as Int), "width": (472 as Int), "height": (709 as Int),"image_url": "http://pcdn.500px.net/4910421/c4a10b46e857e33ed2df35749858a7e45690dae7/2.jpg"]
-let media : [Media] = try! Media.decode(a)
+//let media : [Media] = try! Media.decode(a)
 
 
