@@ -15,7 +15,6 @@ enum JSONType {
 protocol StructDecoder {
 }
 
-
 struct Media : StructDecoder {
     var name : String = ""
     var desc : String?
@@ -23,7 +22,6 @@ struct Media : StructDecoder {
     var width : Int = 0
     var height : Int = 0
     var imageUrl : String = ""
-    
 }
 
 //extension Media : JSONDecodable{
@@ -33,7 +31,8 @@ struct Media : StructDecoder {
 /** Allows to extend functionality to several APIs that ends on the same resulting object.
  *
  */
-protocol JSONParselable {}
+protocol JSONParselable {
+}
 
 
 enum MediaAPIType : APIType {
@@ -53,6 +52,10 @@ protocol JSONDecodable {
     var notCommonKeys : Dictionary<String, String> { get }
 }
 
+enum SerializableError : ErrorType {
+    case KeyNotFound(String)
+}
+
 extension JSONDecodable {
     static func decode(json: [String:AnyObject]) throws -> [Self] {
         do {
@@ -62,6 +65,9 @@ extension JSONDecodable {
             print(mirror.children.count)
             for case let (label?, value) in mirror.children {
                 print(value)
+                
+//                if (dict[label] == nil) { throw SerializableError.KeyNotFound("") }
+                
                 dict[label] = value as? AnyObject
 //                do {
 //                    print(value)
