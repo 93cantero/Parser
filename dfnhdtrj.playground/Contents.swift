@@ -56,7 +56,7 @@ protocol JSONDecodable {
 extension JSONDecodable {
     static func decode(json: [String:AnyObject]) throws -> [Self] {
         do {
-            let mirror = mirroring(reflect: self.dynamicType)
+            let mirror = Mirror(reflect: self.dynamicType)
             print(mirror.children)
             var dict : [String: AnyObject] = [:]
             print(mirror.children.count)
@@ -75,10 +75,6 @@ extension JSONDecodable {
             //            throw SerializationError.StructRequired
             return []
         }
-    }
-    
-    static func mirroring(reflect some: Any) -> Mirror {
-        return Mirror(reflecting: some)
     }
     
 //    static func decode(json: [String:AnyObject], Par) throws -> [Self]  {
