@@ -56,7 +56,7 @@ protocol JSONDecodable {
 extension JSONDecodable {
     static func decode(json: [String:AnyObject]) throws -> [Self] {
         do {
-            let mirror = Mirror(reflect: self.dynamicType)
+            let mirror = Mirror(reflecting: self.dynamicType)
             print(mirror.children)
             var dict : [String: AnyObject] = [:]
             print(mirror.children.count)
